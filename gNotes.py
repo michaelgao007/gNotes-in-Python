@@ -32,40 +32,40 @@ class notesSearch(Frame):
 
 		with open(notesFile, "r") as f:
 
-				dictLineNum = 0
+			dictLineNum = 0
 
-				for line in f:
+			for line in f:
 
-						notesDict[dictLineNum] = line.strip()
-						dictLineNum = dictLineNum + 1
+				notesDict[dictLineNum] = line.strip()
+				dictLineNum = dictLineNum + 1
 
 		while lineCursor < len(notesDict.keys()):
 
-				if re.search(r'^\d\d?\..*{}'.format(keyWord), notesDict[lineCursor]) != None:
+			if re.search(r'^\d\d?\..*{}'.format(keyWord), notesDict[lineCursor]) != None:
 
-						self.msgText.insert(END, notesDict[lineCursor] + "\n")
-						lineCursor = lineCursor + 1
+				self.msgText.insert(END, notesDict[lineCursor] + "\n")
+				lineCursor = lineCursor + 1
 
-						while re.search(r'(^\d\d?\.)', notesDict[lineCursor]) == None:
+				while re.search(r'(^\d\d?\.)', notesDict[lineCursor]) == None:
 
-								self.msgText.insert(END, notesDict[lineCursor] + "\n")
-								lineCursor = lineCursor + 1
+					self.msgText.insert(END, notesDict[lineCursor] + "\n")
+					lineCursor = lineCursor + 1
 
-								if lineCursor >= len(notesDict.keys()):
+					if lineCursor >= len(notesDict.keys()):
 
-										self.msgText.config(state = 'disabled')
-										self.keyword.set('')
-										return searchResult
+						self.msgText.config(state = 'disabled')
+						self.keyword.set('')
+						return searchResult
 
-				else:
+			else:
 
-						lineCursor = lineCursor + 1
+				lineCursor = lineCursor + 1
 
-						if lineCursor >= len(notesDict.keys()):
+				if lineCursor >= len(notesDict.keys()):
 
-								self.msgText.config(state = 'disabled')
-								self.keyword.set('')
-								return searchResult
+					self.msgText.config(state = 'disabled')
+					self.keyword.set('')
+					return searchResult
 								
 
 	def create_widgets(self):
